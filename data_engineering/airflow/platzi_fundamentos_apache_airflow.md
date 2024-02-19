@@ -19,4 +19,28 @@
 - **Web Server**: Soporta la interfaz de usuario.
 - **User Interface**: Interfaz de usuario para monitorear el funcionamiento de nuestros procesos.
 
+## Utilidades dentro de la interfaz
+
+### Creación de variables
+Podemos crear variables dentro de Airflow, y luego usarlas dentro de nuestro código, por ejemplo el nombre del environment.
+Se pueden crear variables tipo Json y luego cargarlas en el código.
+Para crearlas, dentro de la interfaz gráfica, debemos crearla en la pestaña Admin/Variables.
+
+
+Luego para usarla en el código debemos usar el siguiente bloque de ejemplo:
+
+```python
+from airflow.models import Variable
+
+var = Variable.get("<nombre_de_variable_creada>")
+var_json = Variable.get("<nombre_variable_json>", deserialize_json=True)
+```
+
+### Creación de conexiones
+Desde la interfaz, se pueden definir las diferentes conexiones que necesitemos, por ejemplo a una base de datos o a un bucket storage. 
+Para ello se debe crear dentro de Admin/Connection y en el connection type definir la conexión necesaria. Esta nos pedira la información necesaria para conectarnos a donde sea necesario.
+
+Para utilizarla en el código, dependiendo del operador, nos pedira un connection_id (conn_id), en el cual le especificaremos el nombre de la conexión creada.
+
+
 
